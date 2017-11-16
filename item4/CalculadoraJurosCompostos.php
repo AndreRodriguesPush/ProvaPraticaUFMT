@@ -50,6 +50,9 @@
 <!-- 
     http://www.cesar.inf.br/blog/?p=231 
     http://www.php.net/pow
+    
+    http://blog.fabianobento.com.br/2014/10/configurando-o-wamp-server-vhosts-e-preparando-a-estacao/
+    http://www.diogomatheus.com.br/blog/php/depuracao-de-aplicacoes-php-com-xdebug/
 -->
 
 	<?php
