@@ -15,6 +15,7 @@
 
 <body>
 
+
 	<div id="main">
 
 		<h1>Calculadora de Juros Compostos</h1>
@@ -46,6 +47,11 @@
 				<td>Valor Aplicado Corrigido</td>
 				<td>Lucro</td>
 			</tr>
+<!-- 
+    http://www.cesar.inf.br/blog/?p=231 
+    http://www.php.net/pow
+-->
+
 	<?php
 	require_once '../item3/ClasseJuro.php';
 if (isset($_POST["calcular"])) {
@@ -60,8 +66,6 @@ if (isset($_POST["calcular"])) {
     $calculoJuroComposto = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);
     
     for ($x = 1; $x <= $tempoMes; $x ++) {
-        
-        
         
         echo "<tr>";
 		echo "<td>" . $x . "</td>";
