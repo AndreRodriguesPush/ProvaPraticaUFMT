@@ -1,0 +1,62 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Calculadora de Juros Simpes</title>
+<link rel="stylesheet" href="../lib/cssjuros.css">
+
+<script type="text/javascript">
+	function Calcular() {
+		var VP = document.getElementById("VP").value;
+		var i = document.getElementById("i").value;
+		var n = document.getElementById("n").value;
+
+		var VF = parseInt(VP) * (1 + (parseInt(i) / 100) * parseInt(n));
+		console.log("Valor Final:" + parseInt(VF));
+
+		document.getElementById("vf").innerHTML = VF;
+
+		try {
+			console.log("TOTAL = " + VF);
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+</script>
+</head>
+<body>
+	<div id="main">
+
+		<h1>Calculadora de Juros Simples</h1>
+		<form action="CalculadoraJurosSimples.html" method="POST">
+			<table>
+				<tr>
+					<td><label for="Valor Presente">Valor Presente:</label></td>
+					<td><input type="text" name="valorPresente" id="VP" /></td>
+				</tr>
+				<tr>
+					<td><label for="Taxa">Taxa (%):</label></td>
+					<td><input type="text" name="taxa" id="i" /></td>
+				</tr>
+				<tr>
+					<td><label for="tempo">Tempo(meses):</label></td>
+					<td><input type="text" name="tempoMes" id="n" /></td>
+				</tr>
+				<tr>
+					<td><label for="Valor Futuro">Valor Futuro:</label></td>
+					<td><div id="vf"></div></td>
+				</tr>
+				<tr>
+					<td>
+						<button type="button" name="calcular" id="calcular"
+							onclick="Calcular();">Calcular</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+
+	</div>
+
+</body>
+
+</html>

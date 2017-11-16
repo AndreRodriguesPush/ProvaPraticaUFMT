@@ -1,0 +1,38 @@
+/*Style CSS - Sistema de Juros*/
+body {
+	width:50%;
+	margin: 0 auto;	
+}
+#main{
+	background-color: #DEFCFE;
+	padding-bottom:10px;
+}
+h1{
+	color: blue;
+	text-align: center;
+}
+
+.imagem{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.formula {
+	background-color: #CCCCCC;
+	color: black;
+	margin-left: 35%;
+	margin-right: 35%;
+	text-align: center;
+	font-size: 16px;
+}
+.p1 {
+	color: black;
+	margin: 10px;
+	text-align: justify;
+	font-size: 14px;
+}
+.p1 ul {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: italic;
+}
