@@ -55,7 +55,7 @@ class Juro
 
     public function calcularJuroComposto(float $valorP, float $taxa, int $tempo): float
     {
-        $VFC = $valorP * (1 + ($taxa / 100) ^ $tempo);
+        $VFC = $valorP * (1 + ($taxa / 100) /* ^ $tempo */);
         
       /*   $taxa = $taxa / 100;
         

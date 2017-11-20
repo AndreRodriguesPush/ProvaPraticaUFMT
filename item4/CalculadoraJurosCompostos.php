@@ -5,16 +5,9 @@
 <title>Calculadora Juros Compostos</title>
 <link rel="stylesheet" href="../lib/cssjuros.css">
 
-<style type="text/css">
-/* form{
-  display: inline-block;
-  text-align: center;
-} */
-</style>
 </head>
 
 <body>
-
 
 	<div id="main">
 
@@ -22,7 +15,7 @@
 		<form action="CalculadoraJurosCompostos.php" method="POST">
 			<table>
 				<tr>
-					<td><label for="Valor que será Aplicado">Valor que será aplicado:</label></td>
+					<td><label for="Valor que serÃ¡ Aplicado">Valor que serÃ¡ aplicado:</label></td>
 					<td><input type="text" name="valorAplicado" id="VA" /></td>
 				</tr>
 				<tr>
@@ -40,40 +33,45 @@
 			</table>
 		</form>
 
-		<!-- Relatório Página Calculo de Juros Compostos PHP -->
+		<!-- RelatÃ³rio PÃ¡gina Calculo de Juros Compostos PHP -->
 		<table>
 			<tr>
-				<td>Mês</td>
+				<td>MÃªs</td>
 				<td>Valor Aplicado Corrigido</td>
 				<td>Lucro</td>
 			</tr>
-<!-- 
+			<!-- 
     http://www.cesar.inf.br/blog/?p=231 
     http://www.php.net/pow
     
     http://blog.fabianobento.com.br/2014/10/configurando-o-wamp-server-vhosts-e-preparando-a-estacao/
     http://www.diogomatheus.com.br/blog/php/depuracao-de-aplicacoes-php-com-xdebug/
 -->
-
 	<?php
-	require_once '../item3/ClasseJuro.php';
-if (isset($_POST["calcular"])) {
+    include_once'../item3/ClasseJuro.php';
+    if (isset($_POST["calcular"])) {
     
     $valorAplicado = $_POST["valorAplicado"];
     $taxa = $_POST["taxa"];
     $tempoMes = $_POST["tempoMes"];
     
-    // echo "Valor Aplicado:" . $valorAplicado." Taxa:".$taxa." Tempo Mês:".$tempoMes;
+    // echo "Valor Aplicado:" . $valorAplicado." Taxa:".$taxa." Tempo MÃªs:".$tempoMes;
     
-    $juroComposto = new Juro;
-    $calculoJuroComposto = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);
-    
+    $juroComposto = new Juro();
+        
     for ($x = 1; $x <= $tempoMes; $x ++) {
         
+        $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);
+        
         echo "<tr>";
-		echo "<td>" . $x . "</td>";
-		echo "<td>". $calculoJuroComposto ."</td>";
-        echo "<td>". " " ."</td>";
+        echo "<td>" . $x . "</td>";
+        echo "<td>" . $valorAplicadoCorrigido . "</td>";
+        echo "<td>" . $taxa . "</td>";      
+        
+        $taxa = $valorAplicadoCorrigido * ($taxa/100);
+        
+        //$valorAplicadoCorrigido = $valorAplicadoCorrigido + $taxa;       
+    
     }
     echo "</tr>";
     
@@ -83,10 +81,7 @@ if (isset($_POST["calcular"])) {
 					
 		</table>
 
-
-
 	</div>
 
 </body>
-
 </html>
