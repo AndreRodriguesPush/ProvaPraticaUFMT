@@ -8,13 +8,13 @@ class Juro
     private $taxa;
 
     private $tempo;
-
-    public function create(float $valorPresente, float $taxa, int $tempo)
+    
+    public function create(float $valoPresente, float $taxa, int $tempo)
     {
-        $this->valorPresente = $valorPresente;
+        $this->valorPresente = $valoPresente;
         $this->taxa = $taxa;
         $this->tempo = $tempo;
-    }
+    }   
 
     public function getValorPresente(): float
     {

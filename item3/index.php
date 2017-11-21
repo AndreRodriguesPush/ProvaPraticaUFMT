@@ -2,9 +2,11 @@
 require_once 'ClasseJuro.php';
 
  $juro = new Juro;
- 
+
  $juro->create(100.0, 10.0, 2);
 
+var_dump($juro); 
+ 
  $juroSimples = $juro->calcularJuroSimples(1500, 4.99, 1);
  
  echo "Juro Simples: ".mascaraMoeda($juroSimples)."<br/>";
