@@ -41,41 +41,47 @@
 				<td>Lucro</td>
 			</tr>
 			<!-- 
-    http://www.cesar.inf.br/blog/?p=231 
-    http://www.php.net/pow
-    
-    http://blog.fabianobento.com.br/2014/10/configurando-o-wamp-server-vhosts-e-preparando-a-estacao/
-    http://www.diogomatheus.com.br/blog/php/depuracao-de-aplicacoes-php-com-xdebug/
--->
-	<?php
-    include_once'../item3/ClasseJuro.php';
-    if (isset($_POST["calcular"])) {
-    
-    $valorAplicado = $_POST["valorAplicado"];
-    $taxa = $_POST["taxa"];
-    $tempoMes = $_POST["tempoMes"];
-    
-    // echo "Valor Aplicado:" . $valorAplicado." Taxa:".$taxa." Tempo Mês:".$tempoMes;
-    
-    $juroComposto = new Juro();
-    $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);
-    
-    for ($x = 1; $x <= $tempoMes; $x ++) {
-        
-        echo "<tr>";
-        echo "<td>" . $x . "</td>";
-        echo "<td>" . $valorAplicadoCorrigido . "</td>";
-        echo "<td>" . ($valorAplicadoCorrigido - $valorAplicado) . "</td>";      
-        
-        $taxa = $valorAplicadoCorrigido * ($taxa/100);
-        
-        //$valorAplicadoCorrigido = $valorAplicadoCorrigido + $taxa;       
-    
-    }
-    echo "</tr>";
-    
-}
-?>
+                    http://www.cesar.inf.br/blog/?p=231 
+                    http://www.php.net/pow
+                    
+                    http://blog.fabianobento.com.br/2014/10/configurando-o-wamp-server-vhosts-e-preparando-a-estacao/
+                    http://www.diogomatheus.com.br/blog/php/depuracao-de-aplicacoes-php-com-xdebug/
+             -->
+		<?php
+                include_once'../item3/ClasseJuro.php';
+                if (isset($_POST["calcular"])) {
+                
+                $valorAplicado = $_POST["valorAplicado"];
+                $taxa = $_POST["taxa"];
+                $tempoMes = $_POST["tempoMes"];
+                
+                /*$juroComposto = new Juro();
+                $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);*/               
+                
+                $valorAplicadoCorrigido = ($valorAplicado * (1 + ($taxa/100)));
+                $lucro = $taxa;
+                
+                for ($x = 1; $x <= $tempoMes; $x ++) {
+                    
+                    echo "<tr>";                    
+                    echo "<td>" . $x . "</td>";
+                    echo "<td>" . $valorAplicadoCorrigido . "</td>";
+                    echo "<td>" . $lucro . "</td>";      
+                    
+                    $lucro = $valorAplicadoCorrigido * ($lucro/100);  
+                    $valorAplicadoCorrigido = ($valorAplicado * (1 + ($taxa/100)));
+                    
+                    //$valorAplicadoCorrigido = $valorAplicado + $lucro;                    
+                    //$q = ($valorAplicadoCorrigido - $valorAplicado);       
+                    //var_dump($taxa);
+                    //$valorAplicadoCorrigido += ($valorAplicadoCorrigido * ($taxa/100));       
+                    
+                    echo "</tr>";
+                }
+
+                
+            }
+        ?>
 					
 		</table>
 
