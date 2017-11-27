@@ -58,15 +58,14 @@
     // echo "Valor Aplicado:" . $valorAplicado." Taxa:".$taxa." Tempo Mês:".$tempoMes;
     
     $juroComposto = new Juro();
-        
+    $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);
+    
     for ($x = 1; $x <= $tempoMes; $x ++) {
-        
-        $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);
         
         echo "<tr>";
         echo "<td>" . $x . "</td>";
         echo "<td>" . $valorAplicadoCorrigido . "</td>";
-        echo "<td>" . $taxa . "</td>";      
+        echo "<td>" . ($valorAplicadoCorrigido - $valorAplicado) . "</td>";      
         
         $taxa = $valorAplicadoCorrigido * ($taxa/100);
         
@@ -75,7 +74,6 @@
     }
     echo "</tr>";
     
-    // unset($_POST["calcular"]);
 }
 ?>
 					
