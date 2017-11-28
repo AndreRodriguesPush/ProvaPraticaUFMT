@@ -12,13 +12,17 @@ function calculaJuroComposto(float $vp, float $i, int $n){
     return $lucro;    
 }
 
+$valorAplicadoCorrigido = calculaJuroComposto($valorAplicado, $taxa, $tempo);  
 //Percorre Lista Calculo Juro Composto
-for ($x = 1; $x <= $tempo; $x++){    
-    $valorAplicadoCorrigido = calculaJuroComposto($valorAplicado, $taxa, $tempo);   
-    $lucro = $valorAplicadoCorrigido[$x] * ($taxa/100);    
+for ($x = 1; $x < count($valorAplicadoCorrigido); $x++){    
+    if($x == 1 ){
+        $lucro = $valorAplicadoCorrigido[$x] - $valorAplicado;
+    }   else {
+        $lucro = $valorAplicadoCorrigido[$x] - $valorAplicadoCorrigido[$x-1];
+    }
     
-    echo "\t";   
-       echo $x. " - " . $valorAplicadoCorrigido[$x] . " - " . $lucro;
+    echo $x." - ".$valorAplicadoCorrigido[$x] ." - ".$lucro;
+    
     echo "\n";
 }
 
