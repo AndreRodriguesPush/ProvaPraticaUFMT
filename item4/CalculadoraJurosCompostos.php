@@ -56,26 +56,30 @@
                 $tempoMes = $_POST["tempoMes"];
                 
                 /*$juroComposto = new Juro();
-                $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);*/               
+                $valorAplicadoCorrigido = $juroComposto->calcularJuroComposto($valorAplicado, $taxa, $tempoMes);*/   
                 
-                $valorAplicadoCorrigido = ($valorAplicado * (1 + ($taxa/100)));
-                $lucro = $taxa;
+                function calculaJuroComposto(float $vp, float $i, int $n){
+                    $lucro = array();
+                    for($m = 0; $m <= $n; $m++){
+                        $VF = ($vp * (1 + ($i/100)) ** $m);
+                        array_push($lucro, $VF);
+                    }
+                    return $lucro;
+                }
+                
+                $valorAplicadoCorrigido = calculaJuroComposto($valorAplicado,$taxa,$tempoMes);
                 
                 for ($x = 1; $x <= $tempoMes; $x ++) {
                     
+                    if($x == 1 ){
+                        $lucro = $valorAplicadoCorrigido[$x] - $valorAplicado;
+                    }   else {
+                        $lucro = $valorAplicadoCorrigido[$x] - $valorAplicadoCorrigido[$x-1];
+                    }
                     echo "<tr>";                    
-                    echo "<td>" . $x . "</td>";
-                    echo "<td>" . $valorAplicadoCorrigido . "</td>";
-                    echo "<td>" . $valorAplicadoCorrigido - $valorAplicado . "</td>";      
-                    
-                    $lucro = $valorAplicadoCorrigido * ($lucro/100);  
-                    $valorAplicadoCorrigido = ($valorAplicado * (1 + ($taxa/100)));
-                    
-                    //$valorAplicadoCorrigido = $valorAplicado + $lucro;                    
-                    //$q = ($valorAplicadoCorrigido - $valorAplicado);       
-                    //var_dump($taxa);
-                    //$valorAplicadoCorrigido += ($valorAplicadoCorrigido * ($taxa/100));       
-                    
+                      echo "<td>" . $x . "</td>";
+                      echo "<td>" . $valorAplicadoCorrigido[$x] . "</td>";
+                      echo "<td>" . $lucro . "</td>";                          
                     echo "</tr>";
                 }
 
