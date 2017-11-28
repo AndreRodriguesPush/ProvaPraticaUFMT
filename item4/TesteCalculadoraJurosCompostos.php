@@ -3,29 +3,22 @@ $valorAplicado = 100;
 $taxa = 5;
 $tempo = 8;
 
-function calculaJuroComposto(float $va, float $taxa){    
-    
-    $VF = ($va * (1 + ($taxa/100))); 
-    
-    for($i = 1; $i <= $tempo; $i++){ 
-        $lucro = ($VF * ($lucro/100));
+function calculaJuroComposto(float $vp, float $i, int $n){          
+    $lucro = array();    
+    for($m = 0; $m <= $n; $m++){
+        $VF = ($vp * (1 + ($i/100)) ** $m);        
+        array_push($lucro, $VF);
     }
-    return array($lucro);    
+    return $lucro;    
 }
 
-
-
-/* $calculaValorAplicado = calculaJuroComposto($valorAplicado, $taxa);
-$lucro = $taxa;
-
-for($x = 1; $x <= $tempo; $x++){     
+//Percorre Lista Calculo Juro Composto
+for ($x = 1; $x <= $tempo; $x++){    
+    $valorAplicadoCorrigido = calculaJuroComposto($valorAplicado, $taxa, $tempo);   
+    $lucro = $valorAplicadoCorrigido[$x] * ($taxa/100);    
+    
     echo "\t";   
-        echo $i." - ";
-        echo "".$calculaValorAplicado." -";
-        echo " ".$lucro."";   
-   echo "\n";  
-   $lucro = ($calculaValorAplicado * ($lucro/100));
-   
-  // $calculaValorAplicado = ($valorAplicado + $taxa + $lucro);
+       echo $x. " - " . $valorAplicadoCorrigido[$x] . " - " . $lucro;
+    echo "\n";
+}
 
-} */

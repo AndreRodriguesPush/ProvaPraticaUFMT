@@ -66,7 +66,7 @@
                     echo "<tr>";                    
                     echo "<td>" . $x . "</td>";
                     echo "<td>" . $valorAplicadoCorrigido . "</td>";
-                    echo "<td>" . $lucro . "</td>";      
+                    echo "<td>" . $valorAplicadoCorrigido - $valorAplicado . "</td>";      
                     
                     $lucro = $valorAplicadoCorrigido * ($lucro/100);  
                     $valorAplicadoCorrigido = ($valorAplicado * (1 + ($taxa/100)));
